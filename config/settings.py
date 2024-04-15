@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import socket 
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'adrf',
+    'debug_toolbar',
+
     'adminuser',
     'inquires',
 ]
@@ -56,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware', 
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -157,3 +161,6 @@ EMAIL_HOST_PASSWORD = os.getenv('SYSTEM_EMAIL_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('SYSTEM_EMAIL_DEFAULT')
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname()) 
+INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]

@@ -12,6 +12,7 @@ channels = {extras = ["daphne"], version = "*"}
 python-dotenv = "*"
 uvicorn = "*"
 gunicorn = "*"
+django-debug-toolbar = "==2.2"
 
 [dev-packages]
 
