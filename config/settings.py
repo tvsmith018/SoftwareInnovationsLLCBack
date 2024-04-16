@@ -25,8 +25,8 @@ load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.getenv('DEBUG')
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
+# DEBUG = True
 
 ALLOWED_HOSTS = os.getenv('SYSTEM_ALLOWED_HOSTS').split(" ")
 
@@ -162,6 +162,12 @@ EMAIL_HOST_PASSWORD = os.getenv('SYSTEM_EMAIL_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('SYSTEM_EMAIL_DEFAULT')
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SECURE_SSL_REDIRECT = os.getenv('DJANGO_SECURE_SSL_REDIRECT', default=True)
+SECURE_HSTS_SECONDS = os.getenv("DJANGO_SECURE_HSTS_SECONDS", default=2592000)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv("DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS", default=True)
+SECURE_HSTS_PRELOAD = os.getenv("DJANGO_SECURE_HSTS_PRELOAD", default=True)
+SESSION_COOKIE_SECURE = os.getenv("DJANGO_SESSION_COOKIE_SECURE", default=True)
+CSRF_COOKIE_SECURE = os.getenv("DJANGO_CSRF_COOKIE_SECURE", default=True)
 
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname()) 
 INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
