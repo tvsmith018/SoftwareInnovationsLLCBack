@@ -13,6 +13,7 @@ python-dotenv = "*"
 uvicorn = "*"
 gunicorn = "*"
 django-debug-toolbar = "*"
+whitenoise = "==5.1.0"
 
 [dev-packages]
 
